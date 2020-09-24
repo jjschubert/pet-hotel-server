@@ -64,25 +64,27 @@ def getPost():
 
 # @app.route(‘/pets/<id>’, methods=[‘PUT’, ‘DELETE’])
 
-# def putDelete(id):
-#     if (request.method == ‘PUT’):
-#         cur = conn.cursor()
-    
-#         inOrOut = request.form[“check”]
-#         if (inOrOut == ‘in’):
+def putDelete(id):
+    if (request.method == ‘PUT’):
+        cur = conn.cursor()
+        data = request.json
+        queryText = """UPDATE "pets" SET "checked_in" = %s WHERE id = %s; """
+        cur.execute(queryText, data['checked_in'], request.args)
+        # inOrOut = request.form[“check”]
+        # if (inOrOut == ‘in’):
           
-#             queryText = ‘UPDATE “pet” SET “checked_in” = TRUE WHERE id = %s;’
-#             cur.execute(queryText, (id))
-#             conn.commit()
-#             cur.close()
-#             return “checked in!“, 200
-#         elif (inOrOut == ‘out’):
+        #     queryText = ‘UPDATE “pet” SET “checked_in” = TRUE WHERE id = %s;’
+        #     cur.execute(queryText, (id))
+        #     conn.commit()
+        #     cur.close()
+        #     return “checked in!“, 200
+        # elif (inOrOut == ‘out’):
           
-#             queryText = ‘UPDATE “pet” SET “checked_in” = FALSE WHERE id = %s;’
-#             cur.execute(queryText, (id))
-#             conn.commit()
-#             cur.close()
-#             return “checked out!“, 200
+        #     queryText = ‘UPDATE “pet” SET “checked_in” = FALSE WHERE id = %s;’
+        #     cur.execute(queryText, (id))
+        #     conn.commit()
+        #     cur.close()
+        #     return “checked out!“, 200
        
 #     elif (request.method == ‘DELETE’):
 #         cur = conn.cursor()
@@ -99,4 +101,3 @@ def getPost():
 
 # if making put or delete req.params == request.args.get("name", "")
 
-#export FLASK_APP=server.py
