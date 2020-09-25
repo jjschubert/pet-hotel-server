@@ -7,7 +7,7 @@ from flask import Flask, request, make_response, jsonify
 con = psycopg2.connect(
                 host="localhost", 
                 database="pet_hotel",
-                user="johnpatrickmazurek",
+                user="jennischubert",
                 password="postgres",
                 cursor_factory=psycopg2.extras.RealDictCursor
 )
